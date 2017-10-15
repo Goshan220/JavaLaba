@@ -8,6 +8,7 @@ import organization.worker.Organization;
 import organization.worker.Passport;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by student on 05.09.2017.
@@ -66,6 +67,10 @@ public class App {
         dg.setDocGen(df.getDoc(man2, organization));
         System.out.println(dg.getDocument(man2, organization));
 
+        System.out.println("+++++++++++++++++++++++++++++++++");
+        df.ls.showLink();
+        Scanner input = new Scanner(System.in);
+        df.ls.delLink(input.nextInt());
         //System.out.println(organization);           //вывести организацию и её работников
     }
 }

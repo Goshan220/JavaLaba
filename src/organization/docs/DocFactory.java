@@ -11,12 +11,10 @@ public class DocFactory {
         IDocumentCreator doc = new Doc(man, org);
         ls.addLink(doc);
         return doc;
-//        return new Doc(man, org);
     }
     public IDocumentCreator getDocLK(Man man, Organization org){
         IDocumentCreator doc = new DocLK(man, org);
         ls.addLink(doc);
         return doc;
-//        return new DocLK(man, org);
     }
 }

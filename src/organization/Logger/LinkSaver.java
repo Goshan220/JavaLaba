@@ -10,9 +10,12 @@ import java.util.ArrayList;
 public class LinkSaver {
 
     private ArrayList<IDocumentCreator> list = new ArrayList();
+    private Logger logger = new Logger();
 
     public void addLink(IDocumentCreator document){
         list.add(document);
+        EventListener event = new Event(document.getDocument());
+        logger.getUpd(event);
     }
 
     public void delLink(int n){
@@ -28,4 +31,8 @@ public class LinkSaver {
             System.out.println( (i+1) + ": " + list.get(i).getDocument());
         }
     }
+
+    public void editLink(){
+
+    } //TODO сделать редактирование объектов находящихся в списке
 }

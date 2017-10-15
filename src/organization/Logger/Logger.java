@@ -6,4 +6,11 @@ package organization.Logger;
 public class Logger implements EventListener{
 
 
+    void getUpd(EventListener eventListener){
+//        eventListener.update();   //ебооой это работает!!
+    }
+
+    @Override
+    public void update() {
+    }
 }

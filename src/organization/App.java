@@ -16,10 +16,11 @@ import java.util.Scanner;
  */
 public class App {
     public static void main(String[] args) {
+        App app = new App();
+//        app.start(); 
 
         Organization organization = Organization.getOrganization();
         ArrayList<Man> employees = new ArrayList<>();
-
         Passport passport = new Passport();
         Man man = new Man();
 
@@ -68,9 +69,57 @@ public class App {
         System.out.println(dg.getDocument(man2, organization));
 
         System.out.println("+++++++++++++++++++++++++++++++++");
+
         df.ls.showLink();
         Scanner input = new Scanner(System.in);
-        df.ls.delLink(input.nextInt());
+        df.ls.delLink(input.nextInt()); //удаляет из списка по номеру которырый ему передать
         //System.out.println(organization);           //вывести организацию и её работников
+    }
+
+    void start(){
+        while (true){
+            System.out.println("Выберете действие (нажмите необходимую цифру):");
+            System.out.println("1: Добавить запись");
+            System.out.println("2: Редактировать запись");
+            System.out.println("3: Удалить запись");
+            System.out.println("4: Показать список записей");
+            System.out.println("5: Выход из программы");
+            System.out.print("> ");
+            Scanner input = new Scanner(System.in);
+            switch (input.nextInt()) {
+                case 1:
+                    addEntry();
+                    break;
+                case 2:
+                    editEntry();
+                    break;
+                case 3:
+                    removeEntry();
+                    break;
+                case 4:
+                    showEntry();
+                    break;
+                case 5:
+                    System.exit(0);
+            }
+        }
+    }
+
+    //TODO реализовать следующие методы
+
+    private void addEntry(){
+
+    }
+
+    private void editEntry(){
+
+    }
+
+    private void removeEntry() {
+
+    }
+
+    private void showEntry(){
+
     }
 }

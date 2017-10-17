@@ -1,5 +1,7 @@
 package organization.Logger;
 
+import organization.docs.IDocumentCreator;
+
 /**
  * Created by gosha on 15.10.2017.
  */
@@ -12,7 +14,7 @@ public class Event implements EventListener{
     }
 
     @Override
-    public void update() {
-        System.out.println("Event say: "+ string);
+    public void update(EventListener eventListener, IDocumentCreator documentCreator) {
+        System.out.println(string + documentCreator.getDocument());
     }
 }

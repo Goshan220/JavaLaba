@@ -16,11 +16,14 @@ public class LinkSaver {
 
     public void addLink(IDocumentCreator document){
         list.add(document);
-        EventListener event = new Event(document.getDocument());
-        logger.getUpd(event);
+        EventListener event = new Event("Добавлен ");
+        logger.update(event, document);
     }
 
     public void delLink(int n){
+        IDocumentCreator document = list.get(n);
+        EventListener event = new Event("Удалён ");
+        logger.update(event, document);
         n-=1;
         list.remove(n);
         for (int i=0; i<list.size(); i++){
@@ -35,6 +38,8 @@ public class LinkSaver {
     }
 
     public void editLink(int numb, Man man, Organization org){
+
         list.get(numb).editDoc(man, org);
+
     }
 }

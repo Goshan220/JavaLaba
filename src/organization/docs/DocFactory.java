@@ -13,6 +13,7 @@ public class DocFactory {
         return doc;
     }
     public IDocumentCreator getDocLK(Man man, Organization org){
+        System.out.println("test");
         IDocumentCreator doc = new DocLK(man, org);
         ls.addLink(doc);
         return doc;

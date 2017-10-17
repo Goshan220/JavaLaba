@@ -8,6 +8,7 @@ public class DocFactory {
     public LinkSaver ls = new LinkSaver();
 
     public IDocumentCreator getDoc(Man man, Organization org){
+        System.out.println("test");
         IDocumentCreator doc = new Doc(man, org);
         ls.addLink(doc);
         return doc;

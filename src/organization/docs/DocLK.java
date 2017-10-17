@@ -16,6 +16,12 @@ public class DocLK implements IDocumentCreator {
         this.org = org;
     }
 
+    @Override
+    public void editDoc(Man man, Organization org) {
+        this.man = man;
+        this.org = org;
+    }
+
     public String getDocument() {
         return "Справка выдана Организацией: " + org.getName() + ", сотруднику: " +
                 man.getSurname() + man.getName() + man.getPatr();

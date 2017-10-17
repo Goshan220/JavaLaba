@@ -16,6 +16,12 @@ public class Doc implements IDocumentCreator {
         this.org = org;
     }
 
+    @Override
+    public void editDoc(Man man, Organization org){
+        this.man = man;
+        this.org = org;
+    }
+
     public String getDocument() {
         return "Этот DOC файл подготовлен Организацией: " + org.getName() + ", сотрудником: " +
                 man.getSurname() + man.getName() + man.getPatr();

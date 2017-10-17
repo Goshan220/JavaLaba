@@ -7,7 +7,7 @@ public class Logger implements EventListener{
 
 
     void getUpd(EventListener eventListener){
-//        eventListener.update();   //ебооой это работает!!
+        eventListener.update();
     }
 
     @Override

@@ -15,9 +15,10 @@ import java.util.Scanner;
  * Edited by Pelmenulka and pelmailnik on 19.09.20017.
  */
 public class App {
+
     public static void main(String[] args) {
-        App app = new App();
-//        app.start(); 
+//        App app = new App();
+//        app.start();
 
         Organization organization = Organization.getOrganization();
         ArrayList<Man> employees = new ArrayList<>();
@@ -58,6 +59,7 @@ public class App {
         DocFactory df = new DocFactory();
 
         DocGenerator dg = new DocGenerator();
+
         dg.setDocGen(df.getDocLK(man, organization));
         System.out.println(dg.getDocument(man, organization));
         dg.setDocGen(df.getDoc(man, organization));

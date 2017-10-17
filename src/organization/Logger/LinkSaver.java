@@ -1,6 +1,8 @@
 package organization.Logger;
 
 import organization.docs.IDocumentCreator;
+import organization.worker.Man;
+import organization.worker.Organization;
 
 import java.util.ArrayList;
 
@@ -32,7 +34,7 @@ public class LinkSaver {
         }
     }
 
-    public void editLink(){
-
-    } //TODO сделать редактирование объектов находящихся в списке
+    public void editLink(int numb, Man man, Organization org){
+        list.get(numb).editDoc(man, org);
+    }
 }

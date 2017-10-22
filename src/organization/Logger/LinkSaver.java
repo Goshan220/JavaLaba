@@ -5,6 +5,7 @@ import organization.worker.Man;
 import organization.worker.Organization;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by gosha on 15.10.2017.
@@ -21,13 +22,15 @@ public class LinkSaver {
 
     public void addLink(IDocumentCreator document){
         list.add(document);
-        EventListener event = new Event("Добавлен: ");
+        Date time = new Date();
+        EventListener event = new Event("Добавлен: ", time);
         logger.updArray(document, "ADD", 0);
         logger.update(event, document);
     }
 
     public void delLink(int n){
-        EventListener event = new Event("Удалён: ");
+        Date time = new Date();
+        EventListener event = new Event("Удалён: ", time);
         n-=1;
         logger.updArray(list.get(n), "REM", n);
         logger.update(event, list.get(n));
@@ -44,9 +47,10 @@ public class LinkSaver {
     }
 
     public void editLink(int numb, Man man, Organization org){
-        EventListener event = new Event("Редактирован: ");
+        Date time = new Date();
+        EventListener event = new Event("Редактирован: ", time);
+        logger.updArray(list.get(numb), "UPD", numb);
         logger.update(event, list.get(numb));
-
         list.get(numb).editDoc(man, org);
 
     }

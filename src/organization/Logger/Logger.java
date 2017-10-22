@@ -11,26 +11,33 @@ import static java.lang.Thread.sleep;
  */
 public class Logger implements EventListener, Runnable{
 
+    private static ArrayList<IDocumentCreator> createList = new ArrayList();
+    private static ArrayList<EventListener> event = new ArrayList();
+    private static ArrayList <Integer> listToDel = new ArrayList();
     private static ArrayList<IDocumentCreator> updateList = new ArrayList();
-    private static ArrayList <Integer>listToDel = new ArrayList();
     private static int keyADD = 0;
     private static int keyDEL = 0;
+    private static int keyUPD = 0;
 
     @Override
     public void update (EventListener eventListener, IDocumentCreator doc) {
-//        eventListener.update(eventListener, doc);
+        event.add(eventListener);
+        eventListener.update(eventListener, doc);
     }
 
     void updArray(IDocumentCreator doc, String key, int n){
         switch (key){
             case "ADD":
-                updateList.add(doc);
+                createList.add(doc);
                 keyADD++;
                 break;
             case "REM":
-//                updateList.remove(n);
                 listToDel.add(n);
                 keyDEL++;
+                break;
+            case "UPD":
+                updateList.add(doc);
+                keyUPD++;
                 break;
         }
     }
@@ -46,20 +53,32 @@ public class Logger implements EventListener, Runnable{
 //            System.out.println(keyDEL);
 
             if (keyADD != 0) {
-                int len = updateList.size() - keyADD;
-                for (int i = len; i < updateList.size(); i++) {
-                    System.out.println("LOGGER_ADD: " + updateList.get(i).getMan() + updateList.get(i).getClass());
+                int len = createList.size() - keyADD;
+                for (int i = len; i < createList.size(); i++) {
+
+                    System.out.println("LOGGER_ADD: " + createList.get(i).getMan() + createList.get(i).getClass());
                 }
             }
             if (keyDEL != 0){
                 for (int i = 0; i < listToDel.size(); i++){
-                    System.out.println("LOGGER_REMOVE: " + updateList.get(listToDel.get(i).intValue()).getDocument());
-                    updateList.remove(listToDel.get(i).intValue());
+                    System.out.println("LOGGER_REMOVE: " + createList.get(listToDel.get(i).intValue()).getDocument());
+                    createList.remove(listToDel.get(i).intValue());
+                }
+            }
+            if (keyUPD != 0){
+                for (int i = 0; i<updateList.size(); i++){
+                    for (int j = 0; j < createList.size(); j ++){
+                        if (updateList.get(i).getDocument() == createList.get(j).getDocument()){
+                            System.out.println("LOGGER_UPDATE: " + updateList.get(i).getDocument());
+                            createList.set(j, updateList.get(i));
+                        }
+                    }
                 }
             }
 
             keyADD = 0;
             keyDEL = 0;
+            keyUPD = 0;
             logger();
         } catch (InterruptedException e) {
             e.printStackTrace();

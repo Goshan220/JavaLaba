@@ -61,18 +61,18 @@ public class App {
         DocGenerator dg = new DocGenerator();
 
         dg.setDocGen(df.getDocLK(man, organization));
-        System.out.println(dg.getDocument(man, organization));
+//        System.out.println(dg.getDocument(man, organization));
         dg.setDocGen(df.getDoc(man, organization));
-        System.out.println(dg.getDocument(man, organization));
+//        System.out.println(dg.getDocument(man, organization));
 
         dg.setDocGen(df.getDocLK(man2, organization));
-        System.out.println(dg.getDocument(man2, organization));
+//        System.out.println(dg.getDocument(man2, organization));
         dg.setDocGen(df.getDoc(man2, organization));
-        System.out.println(dg.getDocument(man2, organization));
+//        System.out.println(dg.getDocument(man2, organization));
 
-        System.out.println("+++++++++++++++++++++++++++++++++");
+//        System.out.println("+++++++++++++++++++++++++++++++++");
 
-        df.ls.showLink();
+//        df.ls.showLink();
         Scanner input = new Scanner(System.in);
         df.ls.delLink(input.nextInt()); //удаляет из списка по номеру которырый ему передать
         //System.out.println(organization);           //вывести организацию и её работников

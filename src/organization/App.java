@@ -17,68 +17,68 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-//        App app = new App();
-//        app.start();
-
-        Organization organization = Organization.getOrganization();
-        ArrayList<Man> employees = new ArrayList<>();
-        Passport passport = new Passport();
-        Man man = new Man();
-
-        passport.setDate("19.07.1995");
-        passport.setSerial(4895);
-        passport.setNum(45564489);
-        passport.setPlace("УФМС России по Нижегородской области");
-
-        man.setName("Максим ");
-        man.setSurname("Максимов ");
-        man.setPatr("Максимович");
-        man.setPassport(passport);
-
-        employees.add(man);
-
-        Passport passport2 = new Passport();
-        Man man2 = new Man();
-
-        passport2.setDate("10.12.1915");
-        passport2.setSerial(9595);
-        passport2.setNum(456464498);
-        passport2.setPlace("УФМС России по Нижегородской области");
-
-        man2.setName("Антонов ");
-        man2.setSurname("Антон ");
-        man2.setPatr("Антонович");
-        man2.setPassport(passport2);
-
-        employees.add(man2);
-
-        organization.setName("ГАЗПРОМ");
-        organization.setAddress("Москва 80");
-        organization.setEmployees(employees);
-
-        DocFactory df = new DocFactory();
-
-        DocGenerator dg = new DocGenerator();
-
-        dg.setDocGen(df.getDocLK(man, organization));
-//        System.out.println(dg.getDocument(man, organization));
-        dg.setDocGen(df.getDoc(man, organization));
-//        System.out.println(dg.getDocument(man, organization));
-
-        dg.setDocGen(df.getDocLK(man2, organization));
-//        System.out.println(dg.getDocument(man2, organization));
-        dg.setDocGen(df.getDoc(man2, organization));
-//        System.out.println(dg.getDocument(man2, organization));
-
+        App app = new App();
+        app.start();
+//
+//        Organization organization = Organization.getOrganization();
+//        ArrayList<Man> employees = new ArrayList<>();
+//        Passport passport = new Passport();
+//        Man man = new Man();
+//
+//        passport.setDate("19.07.1995");
+//        passport.setSerial(4895);
+//        passport.setNum(45564489);
+//        passport.setPlace("УФМС России по Нижегородской области");
+//
+//        man.setName("Максим ");
+//        man.setSurname("Максимов ");
+//        man.setPatr("Максимович");
+//        man.setPassport(passport);
+//
+//        employees.add(man);
+//
+//        Passport passport2 = new Passport();
+//        Man man2 = new Man();
+//
+//        passport2.setDate("10.12.1915");
+//        passport2.setSerial(9595);
+//        passport2.setNum(456464498);
+//        passport2.setPlace("УФМС России по Нижегородской области");
+//
+//        man2.setName("Антонов ");
+//        man2.setSurname("Антон ");
+//        man2.setPatr("Антонович");
+//        man2.setPassport(passport2);
+//
+//        employees.add(man2);
+//
+//        organization.setName("ГАЗПРОМ");
+//        organization.setAddress("Москва 80");
+//        organization.setEmployees(employees);
+//        DocFactory df = new DocFactory();
+//        DocGenerator dg = new DocGenerator();
+//
+//        dg.setDocGen(df.getDocLK(man, organization));
+////        System.out.println(dg.getDocument(man, organization));
+//        dg.setDocGen(df.getDoc(man, organization));
+////        System.out.println(dg.getDocument(man, organization));
+//
+//        dg.setDocGen(df.getDocLK(man2, organization));
+////        System.out.println(dg.getDocument(man2, organization));
+//        dg.setDocGen(df.getDoc(man2, organization));
+////        System.out.println(dg.getDocument(man2, organization));
+//
 //        System.out.println("+++++++++++++++++++++++++++++++++");
-
+//
 //        df.ls.showLink();
-        Scanner input = new Scanner(System.in);
-        df.ls.delLink(input.nextInt()); //удаляет из списка по номеру которырый ему передать
+//        Scanner input = new Scanner(System.in);
+//        df.ls.delLink(input.nextInt()); //удаляет из списка по номеру которырый ему передать
         //System.out.println(organization);           //вывести организацию и её работников
     }
 
     void start(){
+        DocFactory df = new DocFactory();
+        DocGenerator dg = new DocGenerator();
         while (true){
             System.out.println("Выберете действие (нажмите необходимую цифру):");
             System.out.println("1: Добавить запись");
@@ -90,16 +90,16 @@ public class App {
             Scanner input = new Scanner(System.in);
             switch (input.nextInt()) {
                 case 1:
-                    addEntry();
+                    addEntry(df,dg);
                     break;
                 case 2:
-                    editEntry();
+                    editEntry(df);
                     break;
                 case 3:
-                    removeEntry();
+                    removeEntry(df);
                     break;
                 case 4:
-                    showEntry();
+                    showEntry(df);
                     break;
                 case 5:
                     System.exit(0);
@@ -109,19 +109,83 @@ public class App {
 
     //TODO реализовать следующие методы
 
-    private void addEntry(){
+    private void addEntry(DocFactory df, DocGenerator dg){
+
+        Organization organization = Organization.getOrganization();
+        ArrayList<Man> employees = new ArrayList<>();
+        Passport passport = new Passport();
+        Man man = new Man();
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Фамилия: ");
+        man.setSurname(input.nextLine());
+        System.out.print("Имя: ");
+        man.setName(input.nextLine());
+        System.out.print("Отчество: ");
+        man.setPatr(input.nextLine());
+
+        System.out.print("дата выдачи паспорта: ");
+        passport.setDate(input.nextLine());
+        System.out.print("серия паспорта: ");
+        passport.setSerial(input.nextInt());
+        System.out.print("номер паспорта: ");
+        passport.setNum(input.nextInt());
+        System.out.print("Место выдачи паспорта: ");
+        passport.setPlace(input.nextLine());
+        man.setPassport(passport);
+        System.out.print("Название организации: ");
+        organization.setName(input.nextLine());
+        System.out.print("Адрес организации: ");
+        organization.setAddress(input.nextLine());
+        employees.add(man);
+        organization.setEmployees(employees);
+        dg.setDocGen(df.getDocLK(man, organization));
+        dg.setDocGen(df.getDoc(man, organization));
 
     }
 
-    private void editEntry(){
+    private void editEntry(DocFactory df){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Введите номер изменяемой записи");
+        int numb = (input.nextInt());
+        Organization organization = Organization.getOrganization();
+        ArrayList<Man> employees = new ArrayList<>();
+        Passport passport = new Passport();
+        Man man = new Man();
+        System.out.print("Новое значение: Фамилия: ");
+        man.setSurname(input.nextLine());
+        System.out.print("Новое значение: Имя: ");
+        man.setName(input.nextLine());
+        System.out.print("Новое значение: Отчество: ");
+        man.setPatr(input.nextLine());
 
+        System.out.print("Новое значение: дата выдачи паспорта: ");
+        passport.setDate(input.nextLine());
+        System.out.print("Новое значение: серия паспорта: ");
+        passport.setSerial(input.nextInt());
+        System.out.print("Новое значение: номер паспорта: ");
+        passport.setNum(input.nextInt());
+        System.out.print("Новое значение: Место выдачи паспорта: ");
+        passport.setPlace(input.nextLine());
+        man.setPassport(passport);
+        employees.add(man);
+
+        System.out.print("Новое значение: Название организации: ");
+        organization.setName(input.nextLine());
+        System.out.print("Новое значение: Адрес организации: ");
+        organization.setAddress(input.nextLine());
+
+        df.ls.editLink(numb, man, organization);
     }
 
-    private void removeEntry() {
-
+    private void removeEntry(DocFactory df) {
+        Scanner input = new Scanner(System.in);
+        showEntry(df);
+        System.out.println("Введите номер удаляемой записи");
+        df.ls.delLink(input.nextInt());
     }
 
-    private void showEntry(){
-
+    private void showEntry(DocFactory df){
+        df.ls.showLink();
     }
 }

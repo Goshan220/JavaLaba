@@ -35,9 +35,6 @@ public class LinkSaver {
         logger.updArray(list.get(n), "REM", n);
         logger.update(event, list.get(n));
         list.remove(n);
-//        for (int i=0; i<list.size(); i++){
-//            System.out.println( (i+1) + ": " + list.get(i).getDocument());
-//        }
     }
 
     public void showLink(){

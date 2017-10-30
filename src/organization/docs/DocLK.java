@@ -11,7 +11,17 @@ public class DocLK implements IDocumentCreator {
     private Man man;
     private Organization org;
 
+    public String getMan(){
+        return man.toString();
+    }
+
     DocLK(Man man, Organization org){
+        this.man = man;
+        this.org = org;
+    }
+
+    @Override
+    public void editDoc(Man man, Organization org) {
         this.man = man;
         this.org = org;
     }

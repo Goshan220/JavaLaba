@@ -1,5 +1,6 @@
 package organization;
 
+import organization.Logger.WorkFile;
 import organization.docs.Doc;
 import organization.docs.DocFactory;
 import organization.docs.DocGenerator;
@@ -18,6 +19,7 @@ public class App {
 
     public static void main(String[] args) {
         App app = new App();
+
         app.start();
 //
 //        Organization organization = Organization.getOrganization();
@@ -77,6 +79,8 @@ public class App {
     }
 
     void start(){
+
+        WorkFile wf = new WorkFile();
         DocFactory df = new DocFactory();
         DocGenerator dg = new DocGenerator();
         while (true){
@@ -85,12 +89,13 @@ public class App {
             System.out.println("2: Редактировать запись");
             System.out.println("3: Удалить запись");
             System.out.println("4: Показать список записей");
-            System.out.println("5: Выход из программы");
+            System.out.println("5: Показать лог-файл");
+            System.out.println("6: Выход из программы");
             System.out.print("> ");
             Scanner input = new Scanner(System.in);
             switch (input.nextInt()) {
                 case 1:
-                    addEntry(df,dg);
+                    addEntry(df,dg, wf);
                     break;
                 case 2:
                     editEntry(df);
@@ -102,14 +107,15 @@ public class App {
                     showEntry(df);
                     break;
                 case 5:
+                    showFileLog(wf);
+                    break;
+                case 6:
                     System.exit(0);
             }
         }
     }
 
-    //TODO реализовать следующие методы
-
-    private void addEntry(DocFactory df, DocGenerator dg){
+    private void addEntry(DocFactory df, DocGenerator dg, WorkFile wf){
 
         Organization organization = Organization.getOrganization();
         ArrayList<Man> employees = new ArrayList<>();
@@ -142,6 +148,7 @@ public class App {
         dg.setDocGen(df.getDocLK(man, organization));
         dg.setDocGen(df.getDoc(man, organization));
 
+        wf.fileWrite(man.toString(), employees.toString());
     }
 
     private void editEntry(DocFactory df){
@@ -187,5 +194,9 @@ public class App {
 
     private void showEntry(DocFactory df){
         df.ls.showLink();
+    }
+
+    private void showFileLog(WorkFile wf){
+        wf.getFile();
     }
 }
